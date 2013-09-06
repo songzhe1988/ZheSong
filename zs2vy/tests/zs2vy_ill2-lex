@@ -1,0 +1,21 @@
+
+VAR Aa;
+VAR Bb;
+VAR Cc;
+VAR Nn;
+VAR Ii;
+VAR angle;
+Cc = 200;
+angle = 90;
+Nn=50;
+
+FOR Ii=1 STEP 1 TO Nn DO
+BEGIN
+  TURN angle;
+  Cc = Cc - Ii;
+  GO Cc;
+END
+
+GO SIN 10;
+GO COS 10;
+

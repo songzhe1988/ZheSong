@@ -1,0 +1,21 @@
+
+VAR a;
+VAR b;
+VAR c;
+VAR n;
+VAR i;
+VAR angle;
+c = 200;
+angle = 90
+n=50;
+
+FOR i=1 STEP 1 TO n DO
+{
+  TURN angle;
+  c = c - i;
+  GO c;
+END
+}
+GO sin 10
+GO cos 10
+
