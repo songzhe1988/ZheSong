@@ -19,3 +19,40 @@ END
 GO SIN 10;
 GO COS 10;
 
+TURN angle2;
+
+JUMP 10;
+TURN angle1;
+
+JUMP 20;
+TURN angle2;
+
+angle2 = angle2 / 3;
+
+GO c;
+
+TURN angle2;
+
+JUMP c;
+
+IF (c != 10)
+GO c;
+
+
+angle1 = angle1 * 1.5;
+
+TURN angle1;
+
+GO c;
+
+TURN 90;
+
+c = (c + 1) * 2 - 5;
+
+GO c;
+
+VAR test;
+
+test = sqrt(C*10) + 10 - 2;
+
+JUMP test;

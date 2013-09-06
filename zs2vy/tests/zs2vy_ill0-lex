@@ -5,10 +5,13 @@ VAR c;
 VAR n;
 VAR i;
 VAR angle;
+VAR aasssdddfffooeicu1ic3sssssssssssduciskejsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss;
 c = 200;
-angle = 90
+angle = 90;
 n=50;
+//test1 for Comments
 
+#test2 for Comments
 FOR i=1 STEP 1 TO n DO
 {
   TURN angle;
@@ -16,6 +19,46 @@ FOR i=1 STEP 1 TO n DO
   GO c;
 END
 }
-GO sin 10
-GO cos 10
+GO sin 10;
+GO cos 10;
+
+TURN angle2;
+
+JUMP 10;
+TURN angle1;
+
+VAR kk = "This is a String, or not?";
+
+JUMP 20;
+TURN angle2;
+
+angle2 = angle2 / 3;
+
+GO c;
+
+TURN angle2;
+
+JUMP c;
+
+angle1 = angle1 * 1.5;
+
+TURN angle1;
+
+GO c;
+
+TURN 90;
+
+c = (c + 1) * 2 - 5;
+
+GO c;
+
+VAR test;
+
+test = sqrt(C*10) + 10 - 2;
+
+JUMP test;
+
+test = ((1+20*2)%5)^2;
+
+
 
