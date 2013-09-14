@@ -48,6 +48,8 @@ sqrt            return SQRT;
 \||             return OR;
 \&&             return AND;
 \==             return EQUAL;
+\!=             return NE;
+\!              return NOT;
 
 
 [a-z]+          { yylval.n = lookup(yytext); 

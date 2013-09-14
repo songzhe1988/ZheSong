@@ -39,6 +39,8 @@
 #define OR 294
 #define AND 295
 #define EQUAL 296
+#define NE 297
+#define NOT 298
 
 
 
