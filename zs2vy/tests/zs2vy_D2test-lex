@@ -1,0 +1,67 @@
+
+VAR 1a;
+VAR 2b;
+VAR 3c;
+VAR 4n;
+VAR 5i;
+VAR angle;
+c = 200;
+angle = 90;
+n=50;
+////IS THIS A FAULT?
+FOR i=1 STEP 1 TO n DO
+BEGIN
+  TURN angle;
+  c = c - i;
+  GO c;
+END
+
+GO SIN 10;
+GO COS 10;
+
+TURN angle2;
+
+JUMP 10;
+TURN angle1;
+
+JUMP 20;
+TURN angle2;
+
+angle2 = angle2 / 3;
+
+GO c;
+
+TURN angle2;
+
+JUMP c;
+
+angle1 = angle1 * 1.5;
+
+TURN angle1;
+
+GO c;
+
+WHILE(c >= 1)
+{
+c = c + 1
+}
+
+TURN 90;
+
+c = (c + 1) * 2 - 5;
+
+GO c;
+
+VAR test;
+
+test = sqrt(C*10) + 10 - 2.122345;
+
+JUMP test;
+
+PROCEDURE a(level,dist) { IF (level > 0) THEN
+
+{ TURN -45; a(level-1,dist); TURN 90; b(level-1,dist); TURN -45;
+
+} ELSE
+
+GO dist; }
