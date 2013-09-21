@@ -1,0 +1,48 @@
+VAR a;
+VAR b;
+VAR c;
+VAR n;
+VAR i;
+VAR test;
+
+VAR anglef;
+VAR angles;
+c = 200; n=50;
+
+anglef = 90;
+angles = -90;
+//test1 for Comments
+
+GO sin 10;
+GO cos 10;
+
+JUMP 10;
+JUMP 20;
+
+FOR i=1 STEP 1 TO n DO
+BEGIN
+  TURN anglef;
+  c = c - i;
+  GO c;
+END
+
+GO c;
+
+JUMP c;
+
+GO c;
+
+TURN 90;
+
+c = ( c + 1 ) * 2 - 5;
+
+GO c;
+
+test = sqrt(c*10) + 10 - 2 / 3;
+
+JUMP test;
+
+
+
+
+
