@@ -1,27 +1,17 @@
 
-all: turtle eins.ps
 
-eins.ps: eins.tlt turtle
-	./turtle < eins.tlt > eins.ps
+eins.out: zs2vy_D2test-lex scanner 
+	./scanner < zs2vy_D2test-lex > eins.out
 
-lex.yy.o:  lex.yy.c turtle.tab.h symtab.h
+lex.yy.o:  lex.yy.c token.h symtab.h
 	gcc -c lex.yy.c
 
-lex.yy.c: turtle.l
-	flex turtle.l
+lex.yy.c: turtle_zs2vy.l
+	flex turtle_zs2vy.l
 	
-turtle.tab.h: turtle.y
-	bison -d turtle.y
-	
-turtle.tab.c: turtle.y
-	bison -d turtle.y
-	
-turtle.tab.o: turtle.tab.c symtab.h
-	gcc -c turtle.tab.c
-
-turtle: turtle.tab.o lex.yy.o symtab.c
-	gcc lex.yy.o turtle.tab.o symtab.c -lfl -o turtle
+scanner:  lex.yy.o symtab.c
+	gcc lex.yy.o symtab.c -lfl -o scanner 
 
 clean:
-	rm -f turtle lex.* turtle.tab.* *.o eins.ps
+	rm -f scanner lex.* 
 

@@ -24,28 +24,11 @@
 #define OPEN 279
 #define CLOSE 280
 #define ASSIGN 281
-#define WHILE  282
-#define PROCEDURE 283
-#define COMMA 284
-#define IF 285
-#define ELSE 286
-#define THEN 287
-#define BOPEN 288
-#define BCLOSE 289
-#define GREATER 290
-#define SMALLER 291
-#define GE 292
-#define SE 293
-#define OR 294
-#define AND 295
-#define EQUAL 296
-#define NE 297
-#define NOT 298
 
 
 
 typedef union YYSTYPE
 { int i; node *n; double d;}
         YYSTYPE;
-YYSTYPE yylval;
+extern YYSTYPE yylval;
 
