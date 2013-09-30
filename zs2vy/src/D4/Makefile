@@ -11,10 +11,10 @@ lex.yy.c: turtle.l
 	flex turtle.l
 	
 turtle.tab.h: turtle-zs2vy.y
-	bison -d turtle-zs2vy.y
+	bison -d turtle-zs2vy.y -o turtle.tab.h
 	
 turtle.tab.c: turtle-zs2vy.y
-	bison -d turtle-zs2vy.y
+	bison -d turtle-zs2vy.y -o turtle.tab.c
 	
 turtle.tab.o: turtle.tab.c symtab.h
 	gcc -c turtle.tab.c

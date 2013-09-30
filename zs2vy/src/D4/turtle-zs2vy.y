@@ -55,14 +55,7 @@ stmt: FOR ID ASSIGN expr
 	   stmt {printf("} for\n");};
 
 
-stmt: IF OPEN compr CLOSE      
-       {printf("{");}
-       | theif 
-       | theel
-       {printf("} {");}
-       stmt {printf("} ifelse\n");};
-theif: stmt{printf("} if\n");};
-theel: stmt ELSE;
+
 
 stmt: WHILE
        {printf("{");}
@@ -76,6 +69,15 @@ stmt: PROCEDURE ID
 
 stmt: CALL ID expr expr expr expr SEMICOLON
      {printf(" proc%s\n",$2->symbol);};
+
+stmt: IF OPEN compr CLOSE      
+       {printf("{");}
+       | theif 
+       | theel
+       {printf("} {");}
+       stmt {printf("} ifelse\n");};
+theif: stmt{printf("} if\n");};
+theel: stmt ELSE;
 
 stmt: COPEN stmtlist CCLOSE;	
 stmt: SOPEN stmtlist SCLOSE;
