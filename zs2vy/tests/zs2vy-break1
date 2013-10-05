@@ -1,0 +1,85 @@
+VAR myvar myavv;
+VAR testa;
+VAR testb;
+
+myvar=4;
+testa=6;
+testb=4;
+
+//test for if
+IF(myvar==4) {
+    GO 40;
+    TURN 90;
+    GO 40;
+    TURN 90;
+    GO 40;
+    TURN 90;
+    GO 40;
+    TURN 90;
+}
+
+GO 100;
+
+//should take ELSE and draw a triangle
+IF(myvar>=7) {
+GO 40;
+TURN 90;
+GO 40;
+TURN 90;
+GO 40;
+TURN 90;
+GO 40;
+TURN 90;
+} 
+ELSE{
+GO 30;
+TURN 120;
+GO 30;
+TURN 120;
+GO 30;
+TURN 120;
+}
+
+IF(myvar<=7) {
+WHILE(testa>=3)
+{
+GO 40;
+TURN 90;
+GO 40;
+TURN 90;
+GO 40;
+TURN 90;
+GO 40;
+TURN 90;
+testa = testa-1;
+GO 100;
+}
+    GO 20;
+    TURN 270;
+    JUMP 5;
+    TURN 90;
+} 
+ELSE{
+GO 30;
+TURN 120;
+GO 30;
+TURN 120;
+GO 30;
+TURN 120;
+}
+
+GO 200;
+
+//declaring drawing a 4 sided shape with varying angles (with four parameters)
+PROCEDURE poly {
+GO 40;
+TURN PARAM;
+GO 40;
+TURN PARAM;
+GO 40;
+TURN PARAM;
+GO 40;
+TURN PARAM;
+}
+
+CALL poly 80 100 80 100;

@@ -1,0 +1,54 @@
+VAR myvar;
+VAR testa;
+VAR testb;
+VAR i;
+VAR level;
+VAR dist;
+level=1;
+dist=5;
+i=0;
+
+myvar=4;
+testa=6;
+testb=4;
+
+//should take ELSE and draw a triangle
+IF(myvar<=7) {
+    WHILE(i<8) {
+    GO 20;
+    TURN 270;
+    JUMP 5;
+    TURN 90;
+    i=i+1;
+}
+} 
+ELSE{
+GO 30;
+TURN 120;
+GO 30;
+TURN 120;
+GO 30;
+TURN 120;
+}
+GO 200;
+
+PROCEDURE poly {
+GO 40;
+TURN PARAM;
+GO 40;
+TURN PARAM;
+GO 40;
+TURN PARAM;
+GO 40;
+TURN PARAM;
+}
+
+CALL poly 80 100 80 100;
+PROCEDURE a(level,dist) { IF (level > 0) THEN
+
+{ TURN -45; a(level-1,dist); TURN 90; TURN -45;
+
+} ELSE
+
+GO dist; }
+a(12, 5)

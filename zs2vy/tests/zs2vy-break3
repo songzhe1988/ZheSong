@@ -1,0 +1,39 @@
+VAR myvar;
+VAR testa;
+VAR testb;
+VAR pp;
+
+myvar=4;
+testa=6;
+testb=4;
+pp=80;
+
+
+PROCEDURE poly {
+GO 40;
+TURN PARAM;
+GO 40;
+TURN PARAM;
+GO 40;
+TURN PARAM;
+GO 40;
+TURN PARAM;
+}
+PROCEDURE test {
+GO 40;
+TURN PARAM;
+GO 40;
+TURN PARAM;
+}
+//test for if
+IF((myvar<=4)) {
+CALL poly 80 100 80 100;
+GO 80;
+CALL poly 80 100 80 100;
+GO 80;
+CALL poly 80 100 80 100;
+GO 80;
+CALL test pp pp;
+}
+
+
