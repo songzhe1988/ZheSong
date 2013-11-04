@@ -19,8 +19,8 @@ VarDecl::VarDecl(Identifier *n, Type *t) : Decl(n) {
 }
   
 void VarDecl::PrintChildren(int indentLevel) { 
-   type->Print(indentLevel+1);
-   id->Print(indentLevel+1);
+   if (type) type->Print(indentLevel+1);
+   if (id) id->Print(indentLevel+1);
 }
 
 ClassDecl::ClassDecl(Identifier *n, NamedType *ex, List<NamedType*> *imp, List<Decl*> *m) : Decl(n) {
@@ -62,9 +62,9 @@ void FnDecl::SetFunctionBody(Stmt *b) {
 }
 
 void FnDecl::PrintChildren(int indentLevel) {
-    returnType->Print(indentLevel+1, "(return type) ");
-    id->Print(indentLevel+1);
-    formals->PrintAll(indentLevel+1, "(formals) ");
+    if (returnType) returnType->Print(indentLevel+1, "(return type) ");
+    if (id) id->Print(indentLevel+1);
+    if (formals) formals->PrintAll(indentLevel+1, "(formals) ");
     if (body) body->Print(indentLevel+1, "(body) ");
 }
 

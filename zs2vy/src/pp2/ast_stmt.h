@@ -19,7 +19,10 @@
 class Decl;
 class VarDecl;
 class Expr;
+class IntConstant;
   
+void yyerror(const char *msg);
+
 class Program : public Node
 {
   protected:
@@ -58,6 +61,7 @@ class ConditionalStmt : public Stmt
     Stmt *body;
   
   public:
+    ConditionalStmt() : Stmt(), test(NULL), body(NULL) {}
     ConditionalStmt(Expr *testExpr, Stmt *body);
 };
 
@@ -93,9 +97,17 @@ class IfStmt : public ConditionalStmt
     Stmt *elseBody;
   
   public:
+    IfStmt() : ConditionalStmt(), elseBody(NULL) {}
     IfStmt(Expr *test, Stmt *thenBody, Stmt *elseBody);
     const char *GetPrintNameForNode() { return "IfStmt"; }
     void PrintChildren(int indentLevel);
+};
+
+class IfStmtExprError : public IfStmt
+{
+  public:
+    IfStmtExprError() : IfStmt() { yyerror(this->GetPrintNameForNode()); }
+    const char *GetPrintNameForNode() { return "IfStmtExprError"; }
 };
 
 class BreakStmt : public Stmt 
@@ -127,5 +139,53 @@ class PrintStmt : public Stmt
     void PrintChildren(int indentLevel);
 };
 
+class SwitchLabel : public Stmt
+{
+  protected:
+    IntConstant *label;
+    List<Stmt*> *stmts;
+
+  public:
+    SwitchLabel() { label = NULL; stmts = NULL; }
+    SwitchLabel(IntConstant *label, List<Stmt*> *stmts);
+    SwitchLabel(List<Stmt*> *stmts);
+    void PrintChildren(int indentLevel);
+};
+
+class Case : public SwitchLabel
+{
+  public:
+    Case() : SwitchLabel() {}
+    Case(IntConstant *label, List<Stmt*> *stmts) : SwitchLabel(label, stmts) {}
+    const char *GetPrintNameForNode() { return "Case"; }
+};
+
+class Default : public SwitchLabel
+{
+  public:
+    Default(List<Stmt*> *stmts) : SwitchLabel(stmts) {}
+    const char *GetPrintNameForNode() { return "Default"; }
+};
+
+class SwitchStmt : public Stmt
+{
+  protected:
+    Expr *expr;
+    List<Case*> *cases;
+    Default *def;
+
+  public:
+    SwitchStmt() : expr(NULL), cases(NULL), def(NULL) {}
+    SwitchStmt(Expr *expr, List<Case*> *cases, Default *def);
+    virtual const char *GetPrintNameForNode() { return "SwitchStmt"; }
+    void PrintChildren(int indentLevel);
+};
+
+class SwitchStmtError : public SwitchStmt
+{
+  public:
+    SwitchStmtError(const char * msg) { yyerror(msg); }
+    const char *GetPrintNameForNode() { return "SwitchStmtError"; }
+};
 
 #endif

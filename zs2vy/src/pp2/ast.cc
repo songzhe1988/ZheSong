@@ -37,7 +37,7 @@ void Node::Print(int indentLevel, const char *label) {
            label? label : "", GetPrintNameForNode());
    PrintChildren(indentLevel);
 } 
-         
+	 
 Identifier::Identifier(yyltype loc, const char *n) : Node(loc) {
     name = strdup(n);
 } 

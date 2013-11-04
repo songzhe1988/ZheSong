@@ -1,7 +1,6 @@
 ## 
-## Simple makefile for decaf programming projects
+## Simple makefile for CS143 programming projects
 ##
-
 
 .PHONY: clean strip
 
@@ -12,12 +11,12 @@ PRODUCTS = $(COMPILER)
 default: $(PRODUCTS)
 
 # Set up the list of source and object files
-SRCS = ast.cc ast_decl.cc ast_expr.cc ast_stmt.cc ast_type.cc errors.cc utility.cc main.cc  
+SRCS = ast.cc ast_decl.cc ast_expr.cc ast_stmt.cc ast_type.cc errors.cc utility.cc main.cc
 
 # OBJS can deal with either .cc or .c files listed in SRCS
 OBJS = y.tab.o lex.yy.o $(patsubst %.cc, %.o, $(filter %.cc,$(SRCS))) $(patsubst %.c, %.o, $(filter %.c, $(SRCS)))
 
-JUNK =  *.o lex.yy.c dpp.yy.c y.tab.c y.tab.h *.core core $(COMPILER).purify purify.log 
+JUNK =  *.o lex.yy.c dpp.yy.c y.tab.c y.tab.h *.core core *~
 
 # Define the tools we are going to use
 CC= g++
@@ -29,8 +28,8 @@ YACC = bison
 
 # We want debugging and most warnings, but lex/yacc generate some
 # static symbols we don't use, so turn off unused warnings to avoid clutter
-# STL has some signed/unsigned comparisons we want to suppress
-CFLAGS = -g  -Wall -Wno-unused -Wno-sign-compare 
+# Also STL has some signed/unsigned comparisons we want to suppress
+CFLAGS = -g -Wall -Wno-unused -Wno-sign-compare
 
 # The -d flag tells lex to set up for debugging. Can turn on/off by
 # setting value of global yy_flex_debug inside the scanner itself
@@ -42,7 +41,7 @@ LEXFLAGS = -d
 # The -y flag means imitate yacc's output file naming conventions
 YACCFLAGS = -dvty
 
-# Link with standard c library, math library, and lex library
+# Link with standard C library, math library, and lex library
 LIBS = -lc -lm -lfl
 
 # Rules for various parts of the target
@@ -66,9 +65,6 @@ y.tab.h y.tab.c: parser.y
 $(COMPILER) :  $(OBJS)
 	$(LD) -o $@ $(OBJS) $(LIBS)
 
-$(COMPILER).purify : $(OBJS)
-	purify -log-file=purify.log -cache-dir=/tmp/$(USER) -leaks-at-exit=no $(LD) -o $@ $(OBJS) $(LIBS)
-
 
 # This target is to build small for testing (no debugging info), removes
 # all intermediate products, too
@@ -86,7 +82,6 @@ depend:
 
 clean:
 	rm -f $(JUNK) y.output $(PRODUCTS)
-
 
 # DO NOT DELETE
 
@@ -201,4 +196,3 @@ main.o: /usr/include/bits/sigset.h /usr/include/bits/time.h
 main.o: /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h
 main.o: /usr/include/alloca.h errors.h location.h parser.h scanner.h list.h
 main.o: ast.h ast_type.h ast_decl.h ast_expr.h ast_stmt.h
-

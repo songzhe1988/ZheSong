@@ -1,4 +1,5 @@
-/* File: errors.cc
+/**
+ * File: errors.cc
  * ---------------
  * Implementation for error-reporting class.
  */
@@ -9,8 +10,8 @@
 #include <stdarg.h>
 #include <stdio.h>
 using namespace std;
-
 #include "scanner.h" // for GetLineNumbered
+
 
 int ReportError::numErrors = 0;
 
@@ -50,30 +51,27 @@ void ReportError::UntermComment() {
     OutputError(NULL, "Input ends with unterminated comment");
 }
 
-void ReportError::InvalidDirective(int linenum) {
-    yyltype ll = {0, linenum, 0, 0};
-    OutputError(&ll, "Invalid # directive");
-}
 
 void ReportError::LongIdentifier(yyltype *loc, const char *ident) {
-    stringstream s;
+    ostringstream s;
     s << "Identifier too long: \"" << ident << "\"";
     OutputError(loc, s.str());
 }
 
 void ReportError::UntermString(yyltype *loc, const char *str) {
-    stringstream s;
+    ostringstream s;
     s << "Unterminated string constant: " << str;
     OutputError(loc, s.str());
 }
 
 void ReportError::UnrecogChar(yyltype *loc, char ch) {
-    stringstream s;
-    s << "Unrecognized char: '" << ch << "'" ;
+    ostringstream s;
+    s << "Unrecognized char: '" << ch << "'";
     OutputError(loc, s.str());
 }
   
-/* Function: yyerror()
+/**
+ * Function: yyerror()
  * -------------------
  * Standard error-reporting function expected by yacc. Our version merely
  * just calls into the error reporter above, passing the location of
@@ -82,6 +80,7 @@ void ReportError::UnrecogChar(yyltype *loc, char ch) {
  * then call ReportError::Formatted yourself with a more descriptive 
  * message.
  */
+
 void yyerror(const char *msg) {
     ReportError::Formatted(&yylloc, "%s", msg);
 }

@@ -2,11 +2,11 @@
  * -----------------
  * Implementation of expression node classes.
  */
+
+#include <string.h>
 #include "ast_expr.h"
 #include "ast_type.h"
 #include "ast_decl.h"
-#include <string.h>
-
 
 
 IntConstant::IntConstant(yyltype loc, int val) : Expr(loc) {
@@ -63,10 +63,17 @@ CompoundExpr::CompoundExpr(Operator *o, Expr *r)
     (right=r)->SetParent(this);
 }
 
+CompoundExpr::CompoundExpr(Expr *l, Operator *o) 
+  : Expr(Join(l->GetLocation(), o->GetLocation())) {
+    Assert(l != NULL && o != NULL);
+    (left=l)->SetParent(this);
+    (op=o)->SetParent(this);
+}
+
 void CompoundExpr::PrintChildren(int indentLevel) {
    if (left) left->Print(indentLevel+1);
    op->Print(indentLevel+1);
-   right->Print(indentLevel+1);
+   if (right) right->Print(indentLevel+1);
 }
    
   
@@ -104,8 +111,8 @@ Call::Call(yyltype loc, Expr *b, Identifier *f, List<Expr*> *a) : Expr(loc)  {
 
  void Call::PrintChildren(int indentLevel) {
     if (base) base->Print(indentLevel+1);
-    field->Print(indentLevel+1);
-    actuals->PrintAll(indentLevel+1, "(actuals) ");
+    if (field) field->Print(indentLevel+1);
+    if (actuals) actuals->PrintAll(indentLevel+1, "(actuals) ");
   }
  
 

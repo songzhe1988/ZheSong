@@ -1,4 +1,5 @@
-/* File: ast.h
+/**
+ * File: ast.h
  * ----------- 
  * This file defines the abstract base class Node and the concrete 
  * Identifier and Error node subclasses that are used through the tree as 
@@ -34,8 +35,7 @@
 #include <stdlib.h>   // for NULL
 #include "location.h"
 
-class Node 
-{
+class Node  {
   protected:
     yyltype *location;
     Node *parent;
@@ -43,6 +43,7 @@ class Node
   public:
     Node(yyltype loc);
     Node();
+    virtual ~Node() {}
     
     yyltype *GetLocation()   { return location; }
     void SetParent(Node *p)  { parent = p; }

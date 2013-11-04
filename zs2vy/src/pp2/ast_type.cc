@@ -2,10 +2,10 @@
  * -----------------
  * Implementation of type node classes.
  */
+
+#include <string.h>
 #include "ast_type.h"
 #include "ast_decl.h"
-#include <string.h>
-
  
 /* Class constants
  * ---------------
